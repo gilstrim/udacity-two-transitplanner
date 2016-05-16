@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <title>MY.TRANSIT.PLANNER</title>
+
+    <!-- CSS References -->
+    <!-- build:css css/vendor/materialize.min.css -->
+    <link href="css/vendor/materialize.css" type="text/css" rel="stylesheet" media="screen" />
+    <!-- /build -->
+    <!-- build:css css/vendor/animate.min.css -->
+    <link href="css/vendor/animate.css" rel="stylesheet" />
+    <!-- /build -->
+    <!-- build:css css/vendor/bootstrap-material-datetimepicker.min.css -->
+    <link href="css/vendor/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+    <!-- /build -->
+    <!-- build:css css/style.min.css -->
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen" />
+    <!-- /build -->
+</head>
+<body class="white full">
+
+    <!--Header-->
+    <nav class="white" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="index.html" class="brand-logo grey-text text-darken-3 thin left">MY.TRANSIT.PLANNER</a>
+            <ul class="right hide-on-med-and-down" id="screenBanner"></ul>
+        </div>
+    </nav>
+
+    <div class="row"></div>
+
+    <!-- Card Container -->
+    <div class="cardContainer">
+
+        <!-- Route Card -->
+        <div class="row" id="routeCard">
+            <div class="col s12 container">
+                <div class="card-panel hoverable z-depth-3">
+                    <h4 class="header center grey-text text-darken-3 thin">ROUTE</h4>
+                    <div class="row center">
+                        <label style="color: darkslategrey; font-size: smaller;" class="center">Plan your route be selecting an arrival and departure train station below.</label>
+                    </div>
+                    <form id="routeForm" class="col s12" novalidate="novalidate" autocomplete="on" onsubmit="return false;">
+                        <div class="row">
+                            <div class="input-field col s12 m12">
+                                <i class="material-icons prefix">input</i>
+                                <select id="cboDepartureStation" class="validate" required="required">
+                                    <option value="" disabled selected>Choose a departure station</option>
+                                </select>
+                                <label for="cboDepartureStation" data-success="Valid departure station selected.">Depature Station</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m12">
+                                <i class="material-icons prefix">room</i>
+                                <select id="cboArrivalStation" class="validate" required="required">
+                                    <option value="" disabled selected>Choose an arrival station</option>
+                                </select>
+                                <label for="cboArrivalStation" data-success="Valid arrival station selected.">Arrival Station</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m12">
+                                <i class="material-icons prefix">today</i>
+                                <input placeholder="01/03/2016 12:00" id="txtMobileStartDateTime" type="datetime-local" class="datepicker validate" required="required">
+                                <label for="txtMobileStartDateTime">Schedule Date and Time</label>
+                            </div>
+                            <div class="input-field col s12 m12">
+                                <i class="material-icons prefix">today</i>
+                                <input placeholder="01/03/2016 12:00" id="txtDesktopStartDateTime" type="datetime-local" class="datepicker validate" required="required">
+                                <label for="txtDesktopStartDateTime">Schedule Date and Time</label>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row center">
+                        <button class="waves-effect waves-light btn-large" type="submit" name="action" id="btnProcessRoute">Process Route<i class="material-icons right">send</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Schedule Card -->
+        <div class="row" id="scheduleCard">
+            <div class="col s12 container">
+                <div class="card-panel hoverable z-depth-3">
+                    <h4 class="header center grey-text text-darken-3 thin">SCHEDULE</h4>                              
+                    <h5 class="header center grey-text text-darken-3 thin" id="lblStationName"></h5>
+                    <div class="row center">
+                        <label style="color: darkslategrey; font-size: smaller;" class="center">Find the route schedule for the given date and time below. Click on the row for additional information, including stopovers.</label>
+                    </div>
+                    <div class="row center"></div>                    
+                    <div class="divider"></div>
+                    <form id="scheduleForm" class="col s12" novalidate="novalidate" autocomplete="on" onsubmit="return false;">
+                        <div class="row">
+                            <table id="scheduleTable" class="bordered highlight centered">
+                                <thead>
+                                    <tr>                                        
+                                        <th>Departure Time</th>
+                                        <th>Arrival Station</th>
+                                        <th>Arrival Time</th>                                           
+                                    </tr>
+                                </thead>
+                                <tbody>                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                    <div class="row center"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Departures Card -->
+        <div class="row" id="liveDeparturesCard">
+            <div class="col s12 container">
+                <div class="card-panel hoverable z-depth-3">
+                    <h4 class="header center grey-text text-darken-3 thin">LIVE.DEPARTURES</h4>
+                    <h5 class="header center grey-text text-darken-3 thin" id="lblLiveStationName"></h5>
+                    <div class="row center">
+                        <label style="color: darkslategrey; font-size: smaller;" class="center">Find all live departures to their head stations for the selected departure station, below.</label>
+                    </div>
+                    <form id="liveDeparturesForm" class="col s12" novalidate="novalidate" autocomplete="on" onsubmit="return false;">
+                        <div class="row">
+                            <table id="liveScheduleTable" class="bordered highlight centered">
+                                <thead>
+                                    <tr>                                        
+                                        <th>Head Station</th>
+                                        <th>Route Line</th>
+                                        <th>Time Till Departure</th>                                        
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <div class="row center" id="liveScheduleNotification">
+                                <div class="card-panel red lighten-4">No live schedule updates could be obtained at this time.</div>                                
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row center"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications Card -->
+        <div class="row" id="notificationsCard">
+            <div class="col s12 container">
+                <div class="card-panel hoverable z-depth-3">
+                    <h4 class="header center grey-text text-darken-3 thin">NOTIFICATIONS</h4>
+                    <div class="row center">
+                        <label style="color: darkslategrey; font-size: smaller;" class="center">The below notifications apply for the selected route.</label>
+                    </div>
+                    <form id="notificationsForm" class="col s12" novalidate="novalidate" autocomplete="on" onsubmit="return false;">
+                        <div class="row" id="notificationsDiv">                            
+                        </div>
+                    </form>
+                    <div class="row center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Structure -->
+    <div id="routeModal" class="modal bottom-sheet">
+        <div class="modal-content">
+            <h4 class="header center grey-text text-darken-3 thin">ROUTE.INFORMATION</h4>
+            <ul class="collection" id="routeCollection">                                               
+            </ul>
+        </div>       
+    </div>
+
+    <!-- JS Scripts-->
+    <script src="js/vendor/jquery-2.1.1.min.js"></script>
+    <script src="js/vendor/moment.min.js"></script>
+    
+    <!-- build:js js/vendor/materialize.min.js -->
+    <script src="js/vendor/materialize.js"></script>
+    <!-- /build -->
+    <!-- build:js js/vendor/xml2json.min.js -->
+    <script src="js/vendor/xml2json.js"></script>
+    <!-- /build -->
+    <!-- build:js js/vendor/bootstrap-material-datetimepicker.min.js -->
+    <script src="js/vendor/bootstrap-material-datetimepicker.js"></script>
+    <!-- /build -->
+    <!-- build:js js/vendor/idb.min.js -->
+    <script src="js/vendor/idb.js"></script>
+    <!-- /build -->
+    <!-- build:js js/validation.min.js -->
+    <script src="js/validation.js"></script>
+    <!-- /build -->
+    <!-- build:js js/constants.min.js -->
+    <script src="js/constants.js"></script>
+    <!-- /build -->    
+    <!-- build:js js/transitIdb.min.js -->
+    <script src="js/transitIdb.js"></script>
+    <!-- /build -->    
+    <!-- build:js js/stations.min.js -->
+    <script src="js/stations.js"></script>
+    <!-- /build -->
+    <!-- build:js js/schedules.min.js -->
+    <script src="js/schedules.js"></script>
+    <!-- /build -->
+    <!-- build:js js/index.min.js -->
+    <script src="js/index.js"></script>
+    <!-- /build -->    
+
+</body>
+</html>

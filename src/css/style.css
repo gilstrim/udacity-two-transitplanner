@@ -1,0 +1,197 @@
+/* Custom Stylesheet */
+
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.button-collapse {
+  color: #26a69a;
+}
+
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+  
+}
+
+@media only screen and (max-width : 600px) {
+	#index-banner .section {
+		top: 0;
+	}
+	
+	/* Vlad Golubev 8 months @phongphan117 apply style="margin: 0 auto;" to the .card Look, is it a desired result? http://www.gitterforum.com/discussion/dogfalo-materialize?page=729 */
+	.card-panel.hoverable {
+		width: 100%; 
+		margin: 0 auto;
+	}
+	
+	#viewEventsPanel > div:nth-child(2n + 1) {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
+
+/*https://github.com/Dogfalo/materialize/issues/853::after Fix for icon with select by cbruyndoncx */
+.input-field .prefix ~ input, .input-field .prefix ~ textarea , .input-field .prefix ~ div.select-wrapper {
+    margin-left: 3rem;
+    width: 92%;
+    width: calc(100% - 3rem); }
+
+/* https://github.com/Dogfalo/materialize/issues/1690 Fix for errors which span multiple lines provided by @marci2020 */
+label[data-error]:after {
+  white-space: nowrap;
+}
+
+label.active {
+    width: 90%;
+}
+
+.btn-large {
+   margin-bottom: 10px;
+ }
+
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+	#divPasswordStrength {
+		bottom: 20px;
+	}
+  
+	/* Vlad Golubev 8 months @phongphan117 apply style="margin: 0 auto;" to the .card Look, is it a desired result?  http://www.gitterforum.com/discussion/dogfalo-materialize?page=729 */
+	.card-panel.hoverable {
+		width: 80%;
+		margin: 0 auto;
+	}
+	
+	#viewEventsPanel > div:nth-child(3n + 1) {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+.full {    
+    background: url('../img/background.jpg') no-repeat center center fixed;    
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+@media only screen and (min-width: 993px) {
+	#viewEventsPanel > div:nth-child(4n + 1) {
+		content: "";
+		display: table;
+		clear: both;
+	}
+	#optionsCard
+	{
+		display: none;
+	}
+	#divPasswordStrength {
+		bottom: 20px;
+	}
+  
+	/* Vlad Golubev 8 months @phongphan117 apply style="margin: 0 auto;" to the .card Look, is it a desired result? http://www.gitterforum.com/discussion/dogfalo-materialize?page=729 */
+	.card-panel.hoverable {
+		width: 90%;
+		margin: 0 auto;
+	}
+}
+
+nav, .cardContainer {
+	opacity: 0.9;
+}
+
+/* Fix to remove default calendar on datetime controls: http://stackoverflow.com/questions/11418289/remove-background-arrow-from-date-input-in-google-chrome-v20 - answered by @jfrej */
+::-webkit-inner-spin-button,
+::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+input[type="date"]::-webkit-input-placeholder{ 
+    visibility: hidden !important;
+}
+
+::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+    color: transparent;
+}
+
+/*input-field > .material-icons, input-field > .material-icons.prefix.active {
+    color: GrayText;
+}*/
+
+/*
+    Support for material design icons. 
+    Taken directly from: https://google.github.io/material-design-icons/
+*/
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/material-design-icons/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+       local('MaterialIcons-Regular'),
+       url(../font/material-design-icons/MaterialIcons-Regular.woff2) format('woff2'),
+       url(../font/material-design-icons/MaterialIcons-Regular.woff) format('woff'),
+       url(../font/material-design-icons/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
