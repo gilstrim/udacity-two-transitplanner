@@ -209,7 +209,7 @@ module.exports = function(grunt) {
 						},
 						{
 							pattern: '/src/js/transitIdb.js',
-							replacement: '/dist/js/transitIdb.js'
+							replacement: '/dist/js/transitIdb.min.js'
 						}
 					]
 				}
