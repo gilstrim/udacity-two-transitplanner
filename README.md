@@ -26,3 +26,7 @@ The application can then be run by directing your browser to:
 ```
 http://localhost:<PortNumber>/dist/index.html
 ```
+
+# Demo Page
+
+The full application can be viewed at https://mytransitplanner.apphb.com/
