@@ -206,6 +206,10 @@ module.exports = function(grunt) {
 						{
 							pattern: '/src/img/background.jpg',
 							replacement: '/dist/img/background.jpg'
+						},
+						{
+							pattern: '/src/js/transitIdb.js',
+							replacement: '/dist/js/transitIdb.js'
 						}
 					]
 				}

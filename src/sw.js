@@ -1,5 +1,5 @@
-﻿// initialise variables for cacing
-var staticCacheName = 'transit-static-v16';
+﻿// initialise variables for caching
+var staticCacheName = 'transit-static-v17';
 var allCaches = [
   staticCacheName
 ];
@@ -28,6 +28,7 @@ self.addEventListener('install', function (event) {
             '/src/js/schedules.js',
             '/src/js/stations.js',
             '/src/js/validation.js',
+			'/src/js/transitIdb.js',
             '/src/js/vendor/bootstrap-material-datetimepicker.js',
             '/src/js/vendor/idb.js',
             '/src/js/vendor/jquery-2.1.1.min.js',
