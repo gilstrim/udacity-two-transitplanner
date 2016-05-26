@@ -127,9 +127,27 @@ module.exports = function(grunt) {
 		  	}
 		},
 
+		// rids of unnecessary files
 		clean: {
   			js: ['dist/js/*.js','!dist/js/*.min.js'],
   			css: ['dist/css/*.css','!dist/css/*.min.css']
+		},
+		
+		// replace variables between environments
+		replace: {
+			dist: {
+				options: {
+					patterns: [
+					{
+						match: 'srcCacheFiles)',
+						replacement: 'distCacheFiles)'
+					}],
+					usePrefix: false
+				},
+				files: [
+					{expand: true, flatten: true, src: ['src/sw.js'], dest: 'dist/'}
+				]
+			}
 		}
 	});	
 
@@ -137,7 +155,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('dev', ['browserSync']);
 	
 	// production tasks
-	grunt.registerTask('release', ['jshint','concat','uglify','cssmin','imagemin','processhtml','copy','clean','browserSync']);
+	grunt.registerTask('release', ['jshint','concat','uglify','cssmin','imagemin','processhtml','copy','clean','replace','browserSync']);
 
 	// load tasks 
 	grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -149,4 +167,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-processhtml');		
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-replace');
 };

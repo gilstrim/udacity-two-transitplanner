@@ -1,5 +1,7 @@
 ﻿// initialise variables for caching
 var staticCacheName = 'transit-static-v27';
+var srcCacheFiles = ['/','/index.html','/css/style.css','/css/vendor/animate.css','/css/vendor/bootstrap-material-datetimepicker.css','/css/vendor/materialize.css','/font/material-design-icons/MaterialIcons-Regular.eot','/font/material-design-icons/MaterialIcons-Regular.woff2','/font/material-design-icons/MaterialIcons-Regular.woff','/font/material-design-icons/MaterialIcons-Regular.ttf','/font/roboto/Roboto-Bold.ttf','/font/roboto/Roboto-Thin.ttf','/font/roboto/Roboto-Regular.ttf','/img/background.jpg', '/js/constants.js','/js/index.js','/js/schedules.js','/js/stations.js','/js/validation.js','/js/transitIdb.js','/js/vendor/bootstrap-material-datetimepicker.js','/js/vendor/idb.js','/js/vendor/jquery-2.1.1.min.js','/js/vendor/materialize.js','/js/vendor/moment.min.js','/js/vendor/xml2json.js'];
+var distCacheFiles = ['/','/index.html','/css/app.min.css','/font/material-design-icons/MaterialIcons-Regular.eot','/font/material-design-icons/MaterialIcons-Regular.woff2','/font/material-design-icons/MaterialIcons-Regular.woff','/font/material-design-icons/MaterialIcons-Regular.ttf','/font/roboto/Roboto-Bold.ttf','/font/roboto/Roboto-Thin.ttf','/font/roboto/Roboto-Regular.ttf','/img/background.jpg','/js/app.min.js'];
 var allCaches = [
   staticCacheName
 ];
@@ -8,20 +10,7 @@ var allCaches = [
 self.addEventListener('install', function (event) {
     event.waitUntil(
       caches.open(staticCacheName).then(function (cache) {
-          return cache.addAll([
-            '/',
-            '/index.html',
-            '/css/app.min.css',            
-            '/font/material-design-icons/MaterialIcons-Regular.eot',
-            '/font/material-design-icons/MaterialIcons-Regular.woff2',
-            '/font/material-design-icons/MaterialIcons-Regular.woff',
-            '/font/material-design-icons/MaterialIcons-Regular.ttf',            
-            '/font/roboto/Roboto-Bold.ttf',
-            '/font/roboto/Roboto-Thin.ttf',
-            '/font/roboto/Roboto-Regular.ttf',
-            '/img/background.jpg',
-            '/js/app.min.js',            
-          ]);
+          return cache.addAll(srcCacheFiles);
       })
     );
 });
