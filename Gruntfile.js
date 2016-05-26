@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 			my_target: {
 				files: [{
 					expand: true,
-					cwd: 'src/js',
+					cwd: 'dist/js',
 					src: ['*.js','!*.min.js','vendor/*.js','!vendor/*.min.js'],
 					dest: 'dist/js',
 					ext: '.min.js'
@@ -28,7 +28,7 @@ module.exports = function(grunt) {
 			minify: {
 				files: [{
 					expand: true,
-					cwd: 'src/css',
+					cwd: 'dist/css',
 					src: ['*.css', '!*.min.css','vendor/*.css','!vendor/*.min.css'],
 					dest: 'dist/css',
 					ext: '.min.css'
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
 			},
 			options: {
 				server: {
-					baseDir: "./"
+					baseDir: "./dist/"
 				},
 				ghostMode: 
 				{
@@ -92,128 +92,44 @@ module.exports = function(grunt) {
 		// copy job for fonts
 		copy: {
 			main: {
-				files: [					
-					{expand: true, cwd: 'src/font/', src: ['**'], dest: 'dist/font'},		
-					{expand: true, cwd: 'src/js/vendor/', src: ['**.min.js'], dest: 'dist/js/vendor'}
+				files: [{
+					expand: true, 
+					cwd: 'src/font/', 
+					src: ['**'], 
+					dest: 'dist/font'
+				},
+				{
+					expand: true, 
+					cwd: 'src/', 
+					src: ['sw.js'], 
+					dest: 'dist/'}
 				]
 			}
 		},
 
-		// modifies js files to reference min.js files
-		'string-replace': {
-			dist: {
-				files: {
-					'dist/sw.js': 'src/sw.js'
-				},
-				options: {
-					replacements: [
-						{
-							pattern: '/src/index.html',
-							replacement: '/dist/index.html'
-						},						
-						{
-							pattern: '/src/css/style.css',
-							replacement: '/dist/css/style.min.css'
-						},
-						{
-							pattern: '/src/css/vendor/animate.css',
-							replacement: '/dist/css/vendor/animate.min.css'
-						},
-						{
-							pattern: '/src/css/vendor/bootstrap-material-datetimepicker.css',
-							replacement: '/dist/css/vendor/bootstrap-material-datetimepicker.min.css'
-						},
-						{
-							pattern: '/src/css/vendor/materialize.css',
-							replacement: '/dist/css/vendor/materialize.min.css'
-						},
-						{
-							pattern: '/src/js/constants.js',
-							replacement: '/dist/js/constants.min.js'
-						},
-						{
-							pattern: '/src/js/index.js',
-							replacement: '/dist/js/index.min.js'
-						},
-						{
-							pattern: '/src/js/schedules.js',
-							replacement: '/dist/js/schedules.min.js'
-						},
-						{
-							pattern: '/src/js/stations.js',
-							replacement: '/dist/js/stations.min.js'
-						},
-						{
-							pattern: '/src/js/validation.js',
-							replacement: '/dist/js/validation.min.js'
-						},
-						{
-							pattern: '/src/js/vendor/bootstrap-material-datetimepicker.js',
-							replacement: '/dist/js/vendor/bootstrap-material-datetimepicker.min.js'
-						},
-						{
-							pattern: '/src/js/vendor/idb.js',
-							replacement: '/dist/js/vendor/idb.min.js'
-						},
-						{
-							pattern: '/src/js/vendor/xml2json.js',
-							replacement: '/dist/js/vendor/xml2json.min.js'
-						},
-						{
-							pattern: '/src/',
-							replacement: '/dist/'
-						},
-						{
-							pattern: '/src/font/material-design-icons/MaterialIcons-Regular.eot',
-							replacement: '/dist/font/material-design-icons/MaterialIcons-Regular.eot'
-						},
-						{
-							pattern: '/src/font/material-design-icons/MaterialIcons-Regular.woff2',
-							replacement: '/dist/font/material-design-icons/MaterialIcons-Regular.woff2'
-						},
-						{
-							pattern: '/src/font/material-design-icons/MaterialIcons-Regular.woff',
-							replacement: '/dist/font/material-design-icons/MaterialIcons-Regular.woff'
-						},
-						{
-							pattern: '/src/font/material-design-icons/MaterialIcons-Regular.ttf',
-							replacement: '/dist/font/material-design-icons/MaterialIcons-Regular.ttf'
-						},
-						{
-							pattern: '/src/font/roboto/Roboto-Bold.ttf',
-							replacement: '/dist/font/roboto/Roboto-Bold.ttf'
-						},
-						{
-							pattern: '/src/font/roboto/Roboto-Thin.ttf',
-							replacement: '/dist/font/roboto/Roboto-Thin.ttf'
-						},
-						{
-							pattern: '/src/font/roboto/Roboto-Regular.ttf',
-							replacement: '/dist/font/roboto/Roboto-Regular.ttf'
-						},
-						{
-							pattern: '/src/js/vendor/jquery-2.1.1.min.js',
-							replacement: '/dist/js/vendor/jquery-2.1.1.min.js'
-						},
-						{
-							pattern: '/src/js/vendor/materialize.js',
-							replacement: '/dist/js/vendor/materialize.min.js'
-						},
-						{
-							pattern: '/src/js/vendor/moment.min.js',
-							replacement: '/dist/js/vendor/moment.min.js'
-						},
-						{
-							pattern: '/src/img/background.jpg',
-							replacement: '/dist/img/background.jpg'
-						},
-						{
-							pattern: '/src/js/transitIdb.js',
-							replacement: '/dist/js/transitIdb.min.js'
-						}
-					]
-				}
-			}
+		// job to concatenate multiple files
+		concat: {		  	
+		  	js: {
+		  	  	src: ['src/js/vendor/jquery-2.1.1.min.js','src/js/vendor/moment.min.js','src/js/vendor/materialize.js','src/js/vendor/xml2json.js','src/js/vendor/bootstrap-material-datetimepicker.js','src/js/vendor/idb.js','src/js/validation.js','src/js/constants.js','src/js/transitIdb.js','src/js/stations.js','src/js/schedules.js','src/js/index.js'],
+		  	  	dest: 'dist/js/app.js',
+		  	  	options: {
+		  		  	separator: ';',
+		  		  	stripBanners: true
+		  		}
+		  	},
+		  	css: {
+		  	  	src: ['src/css/vendor/materialize.css','src/css/vendor/animate.css','src/css/vendor/bootstrap-material-datetimepicker.css','src/css/style.css'],
+		  	  	dest: 'dist/css/app.css',
+		  	  	options: {
+		  		  	separator: ';',
+		  		  	stripBanners: true
+		  		}
+		  	}
+		},
+
+		clean: {
+  			js: ['dist/js/*.js','!dist/js/*.min.js'],
+  			css: ['dist/css/*.css','!dist/css/*.min.css']
 		}
 	});	
 
@@ -221,7 +137,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('dev', ['browserSync']);
 	
 	// production tasks
-	grunt.registerTask('release', ['jshint','string-replace','uglify','cssmin','imagemin','processhtml','copy','browserSync']);
+	grunt.registerTask('release', ['jshint','concat','uglify','cssmin','imagemin','processhtml','copy','clean','browserSync']);
 
 	// load tasks 
 	grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -230,6 +146,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-copy');	
 	grunt.loadNpmTasks('grunt-browser-sync');
-	grunt.loadNpmTasks('grunt-processhtml');	
-	grunt.loadNpmTasks('grunt-string-replace');	
+	grunt.loadNpmTasks('grunt-processhtml');		
+	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-clean');
 };
