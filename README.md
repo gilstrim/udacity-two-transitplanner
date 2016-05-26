@@ -22,10 +22,6 @@ This will download all the relevant node package dependencies. To build in a rel
 ```
 grunt release
 ```
-The application can then be run by directing your browser to:
-```
-http://localhost:<PortNumber>/dist/index.html
-```
 
 # Demo Page
 
