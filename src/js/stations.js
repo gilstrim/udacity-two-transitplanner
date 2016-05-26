@@ -51,8 +51,7 @@ stations = function () {
             $('select').material_select();
         })
         .catch(function (error) {
-            // TODO: process error
-            console.log('An error occurred: ' + error);
+            console.log('Fetch error retrieving stations: ' + error);
         });
     };  
 

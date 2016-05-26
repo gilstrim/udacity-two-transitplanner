@@ -91,7 +91,7 @@ schedules = function () {
             notificationsDiv.append('<div class="card-panel red lighten-4"><span>' + jsonObject.root.message.special_schedule + '</div>');
         })
         .catch(function (error) {
-            return error;
+            console.log('Fetch error retrieving static schedules for the station: ' + error);
         });
     };
 
@@ -142,8 +142,8 @@ schedules = function () {
                 }
             }
         })
-        .catch(function (error) {
-            return error;
+        .catch(function (error) {            
+            console.log('Fetch error retrieving live schedules for the station: ' + error);
         });
     };
 
