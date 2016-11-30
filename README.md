@@ -1,14 +1,16 @@
-# Senior Web Developer Nanodegree - Project 3 - Restaurant Reviewer
+# Senior Web Developer Nanodegree - Project 2 - Transit Planner
 
-This is the third project for the Udacity Nanodegree: a restaurant reviewer planner. 
+This is the second project for the Udacity Nanodegree: a transit planner. 
 
 # Technical Dependencies
 
-- jQuery
-- Twitter Bootstrap 3 (http://getbootstrap.com/)
-- Twitter Bootstrap Accessibility Plugin (https://github.com/paypal/bootstrap-accessibility-plugin)
-- Twitter Bootstrap Validator Plugin (https://1000hz.github.io/bootstrap-validator/)
-- Images from Pixabay (https://pixabay.com/)
+- Material design (built on the framework from http://www.materializecss.com)
+- jQuery 2.1.1
+- Bootstrap material date-time picker (https://github.com/T00rk/bootstrap-material-datetimepicker)
+- IndexedDB promise library (https://github.com/jakearchibald/indexeddb-promised)
+- XML to JSON library (https://github.com/abdmob/x2js)
+- BART (Bay Area Rapid Transit) API (http://api.bart.gov/docs/overview/index.aspx)
+- Animate.css library (https://daneden.github.io/animate.css/)
 
 # Build Steps
 
@@ -23,4 +25,4 @@ grunt release
 
 # Demo Page
 
-The full application can be viewed at https://myrestaurantreviewer.apphb.com/
+The full application can be viewed at https://mytransitplanner.apphb.com/
